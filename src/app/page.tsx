@@ -1,6 +1,7 @@
 import Navbar from "@/components/Navbar/Navbar"
 import SecretInput from "@/components/SecretInput/SecretInput"
-import { Box, Button } from "@mui/material"
+import SubmitButton from "@/components/SubmitButton.tsx/SubmitButton"
+import { Box } from "@mui/material"
 import Grid from "@mui/material/Grid2"
 
 export default function Home() {
@@ -17,11 +18,7 @@ export default function Home() {
 						</Box>
 					</Grid>
 					<Grid size={8} sx={{}}>
-						<Box>
-							<Button variant="contained" color="primary">
-								Create SSS
-							</Button>
-						</Box>
+						<SubmitButton/>
 					</Grid>
 				</Grid>
 			</Grid>
