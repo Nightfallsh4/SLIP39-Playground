@@ -29,7 +29,7 @@ export default function RootLayout({
 			<body className={`${geistSans.variable} ${geistMono.variable}`}>
 				<Box
 					sx={{
-						paddingX: "10rem",
+						paddingX: {xs:"1rem", md:"10rem"},
 						paddingY: "3rem",
 						backgroundColor: "#ededed",
 						color: "black",
