@@ -1,6 +1,7 @@
 {
   "name": "slip39-playground",
-  "version": "0.1.0",
+  "version": "0.0.1",
+  "description": "A Website to create and recover Shamir Secret Shares of arbitrary data.",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -20,5 +21,7 @@
     "@types/react-dom": "^18",
     "eslint": "^8",
     "eslint-config-next": "14.2.12"
-  }
+  },
+  "author": "Nightfallsh4",
+  "license": "MIT"
 }
