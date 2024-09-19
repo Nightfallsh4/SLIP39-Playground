@@ -1,6 +1,7 @@
 "use client"
 import { Box, Button } from "@mui/material"
 import { Dispatch, SetStateAction } from "react"
+// @ts-expect-error SLIP39 import works
 import slip39 from "slip39"
 
 interface SubmitButtonInputInterface {
@@ -19,6 +20,7 @@ export default function SubmitButton({ input, setShares, isError }: SubmitButton
 		const passphrase = ""
 		console.log(input)
 
+        // @ts-expect-error slip39EncodeHex works
 		const masterSecret = input.slip39EncodeHex()
 		/**
 		 * 4 groups shares.

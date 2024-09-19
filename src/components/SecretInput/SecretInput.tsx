@@ -1,7 +1,6 @@
 "use client"
 import { TextField } from "@mui/material"
-import useInput from "../hooks/useInput"
-import { Dispatch, SetStateAction, useState } from "react"
+import { Dispatch, SetStateAction } from "react"
 
 interface SecretInputInterface {
 	input: string
