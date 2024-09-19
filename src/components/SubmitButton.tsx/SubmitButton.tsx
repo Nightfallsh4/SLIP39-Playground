@@ -1,17 +1,22 @@
 "use client"
 import { Box, Button } from "@mui/material"
-import useInputContext from "../Context/useInputContext"
 import slip39 from "slip39"
 
-export default function SubmitButton() {
-	// const { onSubmitSecret } = useInputContext()
-	function onSubmitSecret() {
+interface SubmitButtonInputInterface {
+	input: string,
+}
+
+export default function SubmitButton({ input }: SubmitButtonInputInterface) {
+	// const { input } = useInput()
+	function onSubmitSecret(input: string) {
 		console.log("On Clicked")
 
 		const threshold = 2
 
-		const passphrase = "TREZOR"
-		const masterSecret = "ABCDEFGHIJKLMNOPQRST".slip39EncodeHex()
+		const passphrase = ""
+		console.log(input)
+
+		const masterSecret = input.slip39EncodeHex()
 		/**
 		 * 4 groups shares.
 		 * = two for Alice
@@ -53,7 +58,7 @@ export default function SubmitButton() {
 				variant="contained"
 				color="primary"
 				onClick={() => {
-					onSubmitSecret()
+					onSubmitSecret(input)
 				}}
 			>
 				Create SSS
