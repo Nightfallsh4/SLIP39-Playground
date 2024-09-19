@@ -36,7 +36,7 @@ export default function Home() {
 						/>
 					</Box>
 				</Grid>
-				<Grid size={2}>
+				<Grid size={4}>
 					<Box>
 						<SubmitButton
 							input={input}
@@ -56,7 +56,7 @@ export default function Home() {
 					<Divider />
 				</Grid>
 				{shares.map((value, index) => (
-					<Grid size={4} key={index}>
+					<Grid size={{ xs: 6, md: 4 }} key={index}>
 						<Paper sx={{ padding: "2rem" }}>
 							<Box sx={{ marginBottom: "1rem" }}>Share {index + 1}</Box>
 							<Divider sx={{ marginBottom: "1rem" }} />
