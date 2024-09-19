@@ -1,12 +1,15 @@
 "use client"
 import { Box, Button } from "@mui/material"
+import { Dispatch, SetStateAction } from "react"
 import slip39 from "slip39"
 
 interface SubmitButtonInputInterface {
 	input: string,
+    setShares: Dispatch<SetStateAction<string[]>>
+    isError: boolean
 }
 
-export default function SubmitButton({ input }: SubmitButtonInputInterface) {
+export default function SubmitButton({ input, setShares, isError }: SubmitButtonInputInterface) {
 	// const { input } = useInput()
 	function onSubmitSecret(input: string) {
 		console.log("On Clicked")
@@ -44,13 +47,25 @@ export default function SubmitButton({ input }: SubmitButtonInputInterface) {
 		console.log(slip)
 
 		// One of Alice's share
-		const aliceShare1 = slip.fromPath("r/0").mnemonics
-		console.log("Alice Share 1- ")
-		console.log(aliceShare1)
+		const share1 = slip.fromPath("r/0").mnemonics
+		console.log("Share 1- ")
+		console.log(share1)
 
-		const aliceShare2 = slip.fromPath("r/1").mnemonics
-		console.log("Alice share 2- ")
-		console.log(aliceShare2)
+		const share2 = slip.fromPath("r/1").mnemonics
+		console.log("Share 2- ")
+		console.log(share2)
+
+		const share3 = slip.fromPath("r/2").mnemonics
+		console.log("Share 3- ")
+		console.log(share3)
+
+		const share4 = slip.fromPath("r/3").mnemonics
+		console.log("Share 4- ")
+		console.log(share4)
+
+		const shares = [share1[0], share2[0], share3[0], share4[0]]
+
+        setShares(shares)
 	}
 	return (
 		<Box>
@@ -60,8 +75,9 @@ export default function SubmitButton({ input }: SubmitButtonInputInterface) {
 				onClick={() => {
 					onSubmitSecret(input)
 				}}
+                disabled={isError}
 			>
-				Create SSS
+				Create Backup
 			</Button>
 		</Box>
 	)

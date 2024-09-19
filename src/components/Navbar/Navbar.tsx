@@ -6,7 +6,7 @@ export default function Navbar() {
 		<Grid size={12} sx={{}}>
 			<Typography variant="h2">
 				
-				SLIP Playground
+				SLIP39 Playground
 			</Typography>
 		</Grid>
 	)
