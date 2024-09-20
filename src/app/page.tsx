@@ -1,8 +1,10 @@
 "use client"
 import Navbar from "@/components/Navbar/Navbar"
 import SecretInput from "@/components/SecretInput/SecretInput"
+import ShareInput from "@/components/ShareInput/ShareInput"
 import SubmitButton from "@/components/SubmitButton.tsx/SubmitButton"
-import { Box, Container, Divider, Paper, Typography } from "@mui/material"
+import SubmitSharesButton from "@/components/SubmitSharesButton/SubmitSharesButton"
+import { Alert, Box, Container, Divider, Paper, Typography } from "@mui/material"
 import Grid from "@mui/material/Grid2"
 import { useState } from "react"
 
@@ -10,22 +12,22 @@ export default function Home() {
 	const [input, setInput] = useState<string>("")
 	const [shares, setShares] = useState<string[]>([])
 	const [isError, setIsError] = useState<boolean>(false)
+	const [isRecoveryError, setIsRecoveryError] = useState<boolean>(false)
+	const [retrieveShares, setRetrieveShares] = useState<string[]>(["", ""])
+	const [retrievedSecret, setRetrievedSecret] = useState<string>("")
 	return (
 		<Container>
-			<Grid container={true} spacing={3}>
+			<Grid container spacing={3}>
 				<Grid size={12}>
 					<Navbar />
 				</Grid>
+
 				<Grid size={6}>
 					<Box marginY="1rem">
 						<Typography variant="h5">Create SLIP 39 Backups</Typography>
 					</Box>
 				</Grid>
-				{/* <Grid size={6}>
-					<Container>
-						<Typography variant="h5">Recover SSS</Typography>
-					</Container>
-				</Grid> */}
+
 				<Grid size={12}>
 					<Box>
 						<SecretInput
@@ -64,6 +66,59 @@ export default function Home() {
 						</Paper>
 					</Grid>
 				))}
+
+				<Grid container>
+					<Grid size={12} sx={{ marginY: "1rem" }}>
+						<Divider />
+					</Grid>
+					<Grid size={12}>
+						<Box marginY="1rem">
+							<Typography variant="h5">Recover from SLIP 39 Backups</Typography>
+						</Box>
+					</Grid>
+					<Grid size={6}>
+						<ShareInput
+							shareNum={1}
+							retrieveShares={retrieveShares}
+							isRecoveryError={isRecoveryError}
+							setRetrieveShares={setRetrieveShares}
+							setIsRecoveryError={setIsRecoveryError}
+						/>
+					</Grid>
+					<Grid size={6}>
+						<ShareInput
+							shareNum={2}
+							retrieveShares={retrieveShares}
+							isRecoveryError={isRecoveryError}
+							setRetrieveShares={setRetrieveShares}
+							setIsRecoveryError={setIsRecoveryError}
+						/>
+					</Grid>
+					<Grid size={4}>
+						<SubmitSharesButton
+							retrieveShares={retrieveShares}
+							setRetrievedSecret={setRetrievedSecret}
+							setIsRecoveryError={setIsRecoveryError}
+						/>
+					</Grid>
+					<Grid size={8}>
+						{isRecoveryError ? (
+							<Alert variant="filled" severity="error">
+								There is some error in the shares given. Please recheck it
+							</Alert>
+						) : null}
+					</Grid>
+					<Grid size={12} sx={{ marginY: "1rem" }}>
+						<Divider />
+					</Grid>
+					{retrievedSecret ? (
+						<Paper sx={{ padding: "2rem", minWidth: "10rem" }}>
+							<Box sx={{ marginBottom: "1rem" }}>Recovered Secret</Box>
+							<Divider sx={{ marginBottom: "1rem" }} />
+							{retrievedSecret}
+						</Paper>
+					) : null}
+				</Grid>
 			</Grid>
 		</Container>
 	)
