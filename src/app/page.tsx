@@ -2,11 +2,20 @@
 import Navbar from "@/components/Navbar/Navbar"
 import SecretInput from "@/components/SecretInput/SecretInput"
 import ShareInput from "@/components/ShareInput/ShareInput"
+import SharesSelector from "@/components/SharesSelector/SharesSelector"
 import SubmitButton from "@/components/SubmitButton.tsx/SubmitButton"
 import SubmitSharesButton from "@/components/SubmitSharesButton/SubmitSharesButton"
-import { Alert, Box, Container, Divider, Paper, Typography } from "@mui/material"
+import ThresholdSelector from "@/components/ThresholdSelector/ThresholdSelector"
+import {
+	Alert,
+	Box,
+	Container,
+	Divider,
+	Paper,
+	Typography,
+} from "@mui/material"
 import Grid from "@mui/material/Grid2"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 
 export default function Home() {
 	const [input, setInput] = useState<string>("")
@@ -15,6 +24,18 @@ export default function Home() {
 	const [isRecoveryError, setIsRecoveryError] = useState<boolean>(false)
 	const [retrieveShares, setRetrieveShares] = useState<string[]>(["", ""])
 	const [retrievedSecret, setRetrievedSecret] = useState<string>("")
+	const [numOfShares, setNumOfShares] = useState<number>(2)
+	const [threshold, setThreshold] = useState<number>(1)
+
+	useEffect(() => {
+		const shares = []
+		for (let i = 0; i < numOfShares; i++) {
+			shares.push("")
+		}
+		// console.log(shares)
+
+		setRetrieveShares(shares)
+	}, [numOfShares])
 	return (
 		<Container>
 			<Grid container spacing={3}>
@@ -22,13 +43,13 @@ export default function Home() {
 					<Navbar />
 				</Grid>
 
-				<Grid size={6}>
+				<Grid size={12}>
 					<Box marginY="1rem">
 						<Typography variant="h5">Create SLIP 39 Backups</Typography>
 					</Box>
 				</Grid>
 
-				<Grid size={12}>
+				<Grid size={6}>
 					<Box>
 						<SecretInput
 							input={input}
@@ -37,6 +58,23 @@ export default function Home() {
 							setIsError={setIsError}
 						/>
 					</Box>
+				</Grid>
+				<Grid size={6}>
+					<Grid container spacing={3}>
+						<Grid size={6}>
+							<SharesSelector
+								numOfShares={numOfShares}
+								setNumOfShares={setNumOfShares}
+							/>
+						</Grid>
+						<Grid size={6}>
+							<ThresholdSelector
+								numOfShares={numOfShares}
+								threshold={threshold}
+								setThreshold={setThreshold}
+							/>
+						</Grid>
+					</Grid>
 				</Grid>
 				<Grid size={4}>
 					<Box>
@@ -50,7 +88,8 @@ export default function Home() {
 				<Grid size={10}>
 					<Box marginY="0.5rem">
 						<Typography variant="body1">
-							Create a 2 out of 4 SLIP39 backup of your secret
+							Create a {threshold} out of {numOfShares} SLIP39 backup of your
+							secret
 						</Typography>
 					</Box>
 				</Grid>
@@ -76,16 +115,19 @@ export default function Home() {
 							<Typography variant="h5">Recover from SLIP 39 Backups</Typography>
 						</Box>
 					</Grid>
-					<Grid size={6}>
-						<ShareInput
-							shareNum={1}
-							retrieveShares={retrieveShares}
-							isRecoveryError={isRecoveryError}
-							setRetrieveShares={setRetrieveShares}
-							setIsRecoveryError={setIsRecoveryError}
-						/>
-					</Grid>
-					<Grid size={6}>
+					{[...Array(threshold)].map((value, index) => (
+						<Grid size={6} key={index}>
+							<ShareInput
+								shareNum={index + 1}
+								retrieveShares={retrieveShares}
+								isRecoveryError={isRecoveryError}
+								setRetrieveShares={setRetrieveShares}
+								setIsRecoveryError={setIsRecoveryError}
+							/>
+						</Grid>
+					))}
+
+					{/* <Grid size={6}>
 						<ShareInput
 							shareNum={2}
 							retrieveShares={retrieveShares}
@@ -93,8 +135,8 @@ export default function Home() {
 							setRetrieveShares={setRetrieveShares}
 							setIsRecoveryError={setIsRecoveryError}
 						/>
-					</Grid>
-					<Grid size={4}>
+					</Grid> */}
+					<Grid size={12}>
 						<SubmitSharesButton
 							retrieveShares={retrieveShares}
 							setRetrievedSecret={setRetrievedSecret}
