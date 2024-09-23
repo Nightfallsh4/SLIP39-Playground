@@ -80,6 +80,8 @@ export default function Home() {
 					<Box>
 						<SubmitButton
 							input={input}
+							threshold={threshold}
+							numOfShares={numOfShares}
 							setShares={setShares}
 							isError={isError}
 						/>
