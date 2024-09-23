@@ -29,7 +29,7 @@ export default function Home() {
 
 	useEffect(() => {
 		const shares = []
-		for (let i = 0; i < numOfShares; i++) {
+		for (let i = 0; i < threshold; i++) {
 			shares.push("")
 		}
 		// console.log(shares)
@@ -116,6 +116,23 @@ export default function Home() {
 						<Box marginY="1rem">
 							<Typography variant="h5">Recover from SLIP 39 Backups</Typography>
 						</Box>
+					</Grid>
+					<Grid size={12}>
+						<Grid container spacing={3}>
+							<Grid size={6}>
+								<SharesSelector
+									numOfShares={numOfShares}
+									setNumOfShares={setNumOfShares}
+								/>
+							</Grid>
+							<Grid size={6}>
+								<ThresholdSelector
+									numOfShares={numOfShares}
+									threshold={threshold}
+									setThreshold={setThreshold}
+								/>
+							</Grid>
+						</Grid>
 					</Grid>
 					{[...Array(threshold)].map((value, index) => (
 						<Grid size={6} key={index}>
