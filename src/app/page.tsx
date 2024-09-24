@@ -35,7 +35,7 @@ export default function Home() {
 		// console.log(shares)
 
 		setRetrieveShares(shares)
-	}, [numOfShares])
+	}, [numOfShares, threshold])
 	return (
 		<Container>
 			<Grid container spacing={3}>
