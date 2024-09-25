@@ -76,6 +76,15 @@ export default function Home() {
 						</Grid>
 					</Grid>
 				</Grid>
+
+				<Grid size={12}>
+					<Typography variant="subtitle2">
+						- Secret should be atleast 16 characters long
+					</Typography>
+					<Typography variant="subtitle2">
+						- Character length of secret should be even
+					</Typography>
+				</Grid>
 				<Grid size={4}>
 					<Box>
 						<SubmitButton
