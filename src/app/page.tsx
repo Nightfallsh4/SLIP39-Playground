@@ -59,7 +59,7 @@ export default function Home() {
 						/>
 					</Box>
 				</Grid>
-				<Grid size={6}>
+				<Grid size={{ xs: 12, sm: 6, md: 6 }}>
 					<Grid container spacing={3}>
 						<Grid size={6}>
 							<SharesSelector

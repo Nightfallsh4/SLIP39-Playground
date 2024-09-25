@@ -23,7 +23,7 @@ export default function SecretInput({
 			label="Enter Secret"
 			multiline
 			rows={4}
-			sx={{ color: "whitesmoke", minWidth: { xs: "17rem", md: "25rem" } }}
+			sx={{ color: "whitesmoke", minWidth: { xs: "17rem", md: "17rem", lg:"25rem" } }}
 			onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
 				console.log("Setting input")
 				const input = event.target.value
